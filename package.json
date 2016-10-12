@@ -1,14 +1,15 @@
 {
   "name": "pino-influxdb",
   "version": "1.0.0",
-  "description": "",
-  "main": "src/index.js",
+  "description": "Influxdb transport for pino logger",
+  "bin": {"pino-influxdb": "src/index.js"},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha",
+    "lint": "eslint src/**/*"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["pino", "log", "trnasport", "pino-transport", "influx", "influxdb"],
+  "author": "danik@welldone-software.com",
+  "license": "MIT",
   "dependencies": {
     "influx": "^4.2.3",
     "lodash.pick": "^4.4.0",
@@ -18,6 +19,7 @@
     "yargs": "^6.0.0"
   },
   "devDependencies": {
-    "eslint": "^3.7.1"
+    "eslint": "^3.7.1",
+    "mocha": "^3.1.2"
   }
 }
