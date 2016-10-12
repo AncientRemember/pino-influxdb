@@ -1,0 +1,5 @@
+{"pid":53379,"hostname":"MacBook-Pro.local","name":"main","level":30,"time":1476290490447,"port":1883,"backend":{"type":"mongo","url":"mongodb://localhost:7000/roboteam-mqtt"},"persistence":{"url":"mongodb://localhost:7000/roboteam-mqtt"},"logger":{"name":"mosca","level":"debug"},"http":{"port":8080},"v":1}
+{"pid":53379,"hostname":"MacBook-Pro.local","name":"MqttServer","level":30,"time":1476290490474,"msg":"Server starting","v":1}
+{"pid":53379,"hostname":"MacBook-Pro.local","name":"mosca","level":30,"time":1476290490536,"msg":"server started","mqtt":1883,"http":8080,"v":1}
+{"pid":53379,"hostname":"MacBook-Pro.local","name":"MqttServer","level":30,"time":1476290495862,"msg":"Server closing","v":1}
+{"pid":53379,"hostname":"MacBook-Pro.local","name":"mosca","level":30,"time":1476290495867,"msg":"server closed","v":1} 
