@@ -12,17 +12,24 @@ function parseJson(text){
     }
 }
 
+function stringify(obj){
+    if(typeof(obj) === 'object'){
+        return JSON.stringify(obj)
+    }
+    return obj
+}
+
 function buildInfluxPoint(obj, tagKeys){
     if(!obj || !obj.time){
         return null
     }
     const tags = tagKeys.reduce((sum, tag) => {
-        sum[tag] = obj[tag]
+        sum[tag] = stringify(obj[tag])
         return sum
     }, {})
     const fields = Object.keys(obj).reduce((sum, key) => {
         if(!tags[key]){
-            sum[key] = obj[key]
+            sum[key] = stringify(obj[key])
         }
         return sum
     }, {})
