@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 const pump = require('pump')
 const split2 = require('split2')
 const pick = require('lodash.pick')
