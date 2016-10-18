@@ -16,7 +16,7 @@ function stringify(obj){
     if(typeof(obj) === 'object'){
         return JSON.stringify(obj)
     }
-    return obj
+    return obj && obj.toString()
 }
 
 function buildInfluxPoint(obj, tagKeys){
@@ -29,7 +29,7 @@ function buildInfluxPoint(obj, tagKeys){
     }, {})
     const fields = Object.keys(obj).reduce((sum, key) => {
         if(!tags[key]){
-            sum[key] = stringify(obj[key])
+            sum[key] = key === 'time' ? obj[key] : stringify(obj[key])
         }
         return sum
     }, {})
