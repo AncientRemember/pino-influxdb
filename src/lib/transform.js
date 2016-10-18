@@ -13,10 +13,13 @@ function parseJson(text){
 }
 
 function stringify(obj){
+    if(obj === null || obj === undefined){
+        return obj
+    }
     if(typeof(obj) === 'object'){
         return JSON.stringify(obj)
     }
-    return obj && obj.toString()
+    return obj.toString()
 }
 
 function buildInfluxPoint(obj, tagKeys){
