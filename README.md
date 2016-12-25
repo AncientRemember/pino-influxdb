@@ -12,7 +12,7 @@ $ npm i -g pino-influxdb
 ## How to use
 Usage is done by piping. You pipe your process output to pino-influxdb like so:
 ```sh
-$ node your-program-that-outputs-pino-json | pino-influxdb --host http://somehost:8086 --database logs --mesearment log
+$ node your-program-that-outputs-pino-json | pino-influxdb --host http://somehost:8086 --database logs --measurement log
 ```
 
 ## Command Line options
