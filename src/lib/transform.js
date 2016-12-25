@@ -22,7 +22,7 @@ function stringify(obj){
     return obj.toString()
 }
 
-function buildInfluxPoint(obj, tagKeys){
+function buildInfluxPoint(obj, tagKeys, measurement){
     if(!obj || !obj.time){
         return null
     }
@@ -36,15 +36,19 @@ function buildInfluxPoint(obj, tagKeys){
         }
         return sum
     }, {})
-    return [fields, tags]
+    return {
+        fields: fields,
+        tags: tags,
+        measurement: measurement
+    }
 }
 
 
 
-module.exports = function transform(tags, mesearment){
+module.exports = function transform(tags, measurement){
     return through2.obj(function transformer(textLine, enc, cb) {
         const obj = parseJson(textLine)
-        const influxPoint = buildInfluxPoint(obj, tags, mesearment)
+        const influxPoint = buildInfluxPoint(obj, tags, measurement)
         if(influxPoint){
             this.push(influxPoint)
         }
