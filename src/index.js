@@ -14,12 +14,12 @@ const argv = require('yargs')
         echo: {
             default: true,
             type: 'boolean',
-            description: 'Echo the l'
+            description: 'Echo the log'
         },
-        mesearment: {
+        measurement: {
             default: 'log',
             requiresArg: true,
-            description: 'The mesearment name'
+            description: 'The measurement name'
         },
         database: {
             default: 'logs',
@@ -27,11 +27,11 @@ const argv = require('yargs')
             description: 'The database name. Will be created if missing.'
         },
         host: {
-            alias: 'hosts',
-            array: true,
+            alias: 'host',
+            array: false,
             default: 'http://localhost:8086',
             requiresArg: true,
-            describe: 'One or more influx db host urls.'
+            describe: 'Influx db host url.'
         },
         tags: {
             array: true,
@@ -46,10 +46,10 @@ const argv = require('yargs')
 const transform = require('./lib/transform')
 const transport = require('./lib/transport')
 
-const transformToInfluxPoint = transform(Array.from(argv.tags))
-const transportPoints = transport(pick(argv, ['hosts', 'database', 'mesearment']))
+const transformToInfluxPoint = transform(Array.from(argv.tags), argv.measurement)
+const transportPoints = transport(pick(argv, ['database', 'host']))
 
-pump(process.stdin, split2(), transformToInfluxPoint, transportPoints)
+pump(process.stdin, split2(), transformToInfluxPoint, transportPoints, function (err) { err && console.error(err) })
 
 
 

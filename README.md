@@ -20,12 +20,12 @@ $ node your-program-that-outputs-pino-json | pino-influxdb --host http://somehos
 ```                                                                                                                                                                                    
   --help           Show help                                           [boolean]                                                                                                               
   --version        Show version number                                 [boolean]                                                                                                               
-  --echo           Echo the l                          [boolean] [default: true]                                                                                                               
-  --mesearment     The mesearment name                          [default: "log"]                                                                                                               
+  --echo           Echo the logs                       [boolean] [default: true]                                                                                                               
+  --measurement    The measurement name                         [default: "log"]                                                                                                               
   --database       The database name. Will be created if missing.                                                                                                                              
                                                                [default: "logs"]                                                                                                               
-  --host, --hosts  One or more influx db host urls.                                                                                                                                            
-                                      [array] [default: "http://localhost:8086"]                                                                                                               
+  --host           Influx db host url.                                                                                                                                            
+                                     [string] [default: "http://localhost:8086"]                                                                                                               
   --tags           List of tags    [array] [default: ["pid","hostname","level"]] 
   ```
   
