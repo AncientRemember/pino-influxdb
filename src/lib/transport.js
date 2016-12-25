@@ -3,21 +3,16 @@ const URL = require('url')
 var Influx = require('influx')
 
 function tryCreateDatabaseIfNotExists(client, database){
-    if(database){
-        client.getDatabaseNames(function(error, names){
-            if(names){
-                if(names.indexOf(database) === -1){
-                    client.createDatabase(database, function(error){
-                        if(error){
-                            console.error(error)
-                        }
-                    })
+    if(database) {
+        client.getDatabaseNames()
+            .then(function (names) {
+                if (names.indexOf(database) === -1) {
+                    return client.createDatabase(database)
                 }
-            }
-            if(error){
+            })
+            .catch(function (error) {
                 console.error(error)
-            }
-        })
+            })
     }
 }
 
