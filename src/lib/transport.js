@@ -1,5 +1,6 @@
 const through2 = require('through2')
-var influx = require('influx')
+const URL = require('url')
+var Influx = require('influx')
 
 function tryCreateDatabaseIfNotExists(client, database){
     if(database){
@@ -21,17 +22,20 @@ function tryCreateDatabaseIfNotExists(client, database){
 }
 
 module.exports = function transport(options) {
+    const hostUrl = URL.parse(options.host)
+    const client = new Influx.InfluxDB({
+        host: hostUrl.hostname,
+        port: hostUrl.port || 8086,
+        database: options.database,
+    })
 
-    const client = influx(options)
-    
     tryCreateDatabaseIfNotExists(client, options.database)
 
     return through2.obj(function transporter(influxPoint, enc, cb) {
-        client.writePoints(options.mesearment, [influxPoint], function(err){
-            if(err){
+        client.writePoints([influxPoint], options)
+            .catch(function(err) {
                 console.warn('error writing log', influxPoint, err)
-            }
-        })
+            });
         cb()
     })
 }
