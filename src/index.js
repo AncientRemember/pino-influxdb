@@ -34,14 +34,14 @@ const argv = require('yargs')
             describe: 'Influx db host url.'
         },
         un:{
-            alias: 'u',
+            alias: 'un',
             array: false,
             default: null,
             requiresArg: true,
             describe: 'Influx db username.'
         },
         pa:{
-            alias: 'p',
+            alias: 'pa',
             array: false,
             default: null,
             requiresArg: true,
@@ -61,7 +61,7 @@ const transform = require('./lib/transform')
 const transport = require('./lib/transport')
 
 const transformToInfluxPoint = transform(Array.from(argv.tags), argv.measurement)
-const transportPoints = transport(pick(argv, ['database', 'host']))
+const transportPoints = transport(pick(argv, ['database', 'host','un','pa']))
 
 pump(process.stdin, split2(), transformToInfluxPoint, transportPoints, function (err) { err && console.error(err) })
 

@@ -21,7 +21,7 @@
   "author": "danik@welldone-software.com",
   "license": "MIT",
   "dependencies": {
-    "influx": "^5.0.0",
+    "influx": "^5.0.7",
     "lodash.pick": "^4.4.0",
     "pump": "^1.0.1",
     "split2": "^2.1.0",
