@@ -22,6 +22,8 @@ module.exports = function transport(options) {
         host: hostUrl.hostname,
         port: hostUrl.port || 8086,
         database: options.database,
+        username: options.un,
+        password: options.pa,
     })
 
     tryCreateDatabaseIfNotExists(client, options.database)

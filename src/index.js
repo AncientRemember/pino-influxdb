@@ -33,6 +33,20 @@ const argv = require('yargs')
             requiresArg: true,
             describe: 'Influx db host url.'
         },
+        un:{
+            alias: 'u',
+            array: false,
+            default: null,
+            requiresArg: true,
+            describe: 'Influx db username.'
+        },
+        pa:{
+            alias: 'p',
+            array: false,
+            default: null,
+            requiresArg: true,
+            describe: 'Influx db password.'
+        },
         tags: {
             array: true,
             default: ['pid', 'hostname', 'level'],
