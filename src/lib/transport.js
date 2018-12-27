@@ -32,7 +32,7 @@ module.exports = function transport(options) {
         client.writePoints([influxPoint], options)
             .catch(function(err) {
                 console.warn('error writing log', influxPoint, err)
-            });
+            })
         cb()
     })
 }

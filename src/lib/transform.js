@@ -48,6 +48,7 @@ function buildInfluxPoint(obj, tagKeys, measurement){
 module.exports = function transform(tags, measurement){
     return through2.obj(function transformer(textLine, enc, cb) {
         const obj = parseJson(textLine)
+        console.log(textLine)
         const influxPoint = buildInfluxPoint(obj, tags, measurement)
         if(influxPoint){
             this.push(influxPoint)
